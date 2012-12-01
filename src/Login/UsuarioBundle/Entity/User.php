@@ -118,28 +118,23 @@ class User implements UserInterface
 	 */
 	public function getNombre() 
 	{
-		return $this->nombre;
+		return $this->nombre; 
 	}
 	public function getRoles() 
 	{
-		return "ROLE_USER";
+		return Array("ROLE_USER"); // aki se devuelve un array 
 	}
-	public function getSalt() 
+	public function getSalt() // como security esta en plaintext salt no hara nada, no haria falta por ahora.
 	{
-		return 1234;
 	}
-	public function getUsername() 
+	public function getUsername()
 	{
 		return $this->getLogin();
 	}
 	public function eraseCredentials() 
 	{
 	}
-	
-	function equals(\Symfony\Component\Security\Core\User\UserInterface $usuario)
-	{
-		return $this->getUsername() == $usuario->getUsername();
-	}
+
 	
 
 }

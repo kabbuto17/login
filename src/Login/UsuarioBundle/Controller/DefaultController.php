@@ -11,14 +11,16 @@ class DefaultController extends Controller
     {
     	$peticion = $this->getRequest();
     	$sesion = $peticion->getSession();
-    	$error = $peticion->attributes->get(
-    			SecurityContext::AUTHENTICATION_ERROR,
-    			$sesion->get(SecurityContext::AUTHENTICATION_ERROR)
-    	);
+    	
+    	if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+    		$error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+    	} else {
+    		$error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+    	}
+    	
     	return $this->render('UsuarioBundle:Default:login.html.twig', array(
     			'last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
-    			'error'
-    			=> $error
+    			'error' => $error
     	));
     	 
     }
