@@ -29,6 +29,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         'usuario_login' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Login\\UsuarioBundle\\Controller\\DefaultController::loginAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/usuario/login',    ),  ),),
         'usuario_login_check' => array (  0 =>   array (  ),  1 =>   array (  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/usuario/login_check',    ),  ),),
         'usuario_logout' => array (  0 =>   array (  ),  1 =>   array (  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/usuario/logout',    ),  ),),
+        'page_usuario' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Login\\UsuarioBundle\\Controller\\DefaultController::usuarioAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/usuario/',    ),  ),),
     );
 
     /**

@@ -120,6 +120,15 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array('_route' => 'usuario_logout');
             }
 
+            // page_usuario
+            if (rtrim($pathinfo, '/') === '/usuario') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'page_usuario');
+                }
+
+                return array (  '_controller' => 'Login\\UsuarioBundle\\Controller\\DefaultController::usuarioAction',  '_route' => 'page_usuario',);
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

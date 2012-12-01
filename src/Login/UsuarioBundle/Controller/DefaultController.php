@@ -24,4 +24,8 @@ class DefaultController extends Controller
     	));
     	 
     }
+    
+    public function usuarioAction() {
+    	return $this->render('UsuarioBundle:Default:usuario.html.twig', array('name' => $this->getUser()));
+    }
 }

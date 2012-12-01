@@ -457,8 +457,8 @@
     <parameter key="jms_di_extra.directories" type="collection"/>
     <parameter key="jms_di_extra.cache_dir">/home/alfonso/git/login/app/cache/dev/jms_diextra</parameter>
     <parameter key="jms_di_extra.doctrine_integration">true</parameter>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/home/alfonso/git/login/app/cache/dev/jms_diextra/doctrine/EntityManager_50ba1b4a21f4a.php</parameter>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager50ba1b4a21f4a_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/home/alfonso/git/login/app/cache/dev/jms_diextra/doctrine/EntityManager_50ba2281c839c.php</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager50ba2281c839c_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
     <parameter key="security.secured_services" type="collection"/>
     <parameter key="security.access.method_interceptor.class">JMS\SecurityExtraBundle\Security\Authorization\Interception\MethodSecurityInterceptor</parameter>
     <parameter key="security.access.method_access_control" type="collection"/>
@@ -1501,7 +1501,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>50ba1b4a08dcf</argument>
+            <argument>50ba2281a4249</argument>
           </service>
         </argument>
       </argument>
@@ -1592,7 +1592,7 @@
       <argument type="service" id="router"/>
       <call method="registerListener">
         <argument>user</argument>
-        <argument>/logout</argument>
+        <argument>/usuario/logout</argument>
         <argument>logout</argument>
         <argument>_csrf_token</argument>
         <argument>null</argument>
@@ -1623,6 +1623,17 @@
                   </argument>
                   <argument type="collection">
                     <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/usuario/*</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_USER</argument>
                   </argument>
                   <argument>null</argument>
                 </call>
@@ -1671,7 +1682,7 @@
             <argument type="collection">
               <argument key="csrf_parameter">_csrf_token</argument>
               <argument key="intention">logout</argument>
-              <argument key="logout_path">/logout</argument>
+              <argument key="logout_path">/usuario/logout</argument>
             </argument>
             <call method="addHandler">
               <argument type="service">
@@ -1706,7 +1717,7 @@
                   </service>
                 </argument>
                 <argument type="collection">
-                  <argument key="default_target_path">/usuario/lapaginaquesea</argument>
+                  <argument key="default_target_path">/usuario/</argument>
                   <argument key="login_path">/usuario/login</argument>
                   <argument key="always_use_default_target_path">false</argument>
                   <argument key="target_path_parameter">_target_path</argument>
@@ -1750,7 +1761,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>50ba1b4a08dcf</argument>
+            <argument>50ba2281a4249</argument>
             <argument type="service" id="monolog.logger.security"/>
           </service>
         </argument>
@@ -1769,6 +1780,17 @@
                   </argument>
                   <argument type="collection">
                     <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/usuario/*</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_USER</argument>
                   </argument>
                   <argument>null</argument>
                 </call>
@@ -2120,8 +2142,8 @@
     <service id="doctrine.orm.default_manager_configurator" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator">
       <argument type="collection"/>
     </service>
-    <service id="doctrine.orm.default_entity_manager" class="EntityManager50ba1b4a21f4a_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
-      <file>/home/alfonso/git/login/app/cache/dev/jms_diextra/doctrine/EntityManager_50ba1b4a21f4a.php</file>
+    <service id="doctrine.orm.default_entity_manager" class="EntityManager50ba2281c839c_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
+      <file>/home/alfonso/git/login/app/cache/dev/jms_diextra/doctrine/EntityManager_50ba2281c839c.php</file>
       <argument type="service">
         <service class="Doctrine\ORM\EntityManager" factory-method="create" public="false">
           <argument type="service" id="doctrine.dbal.default_connection"/>
@@ -2498,6 +2520,18 @@
     <service id="security.encoder_factory" class="Symfony\Component\Security\Core\Encoder\EncoderFactory">
       <argument type="collection">
         <argument key="Symfony\Component\Security\Core\User\User" type="collection">
+          <argument key="class">%security.encoder.plain.class%</argument>
+          <argument key="arguments" type="collection">
+            <argument>false</argument>
+          </argument>
+        </argument>
+        <argument key="Login\UsuarioBundle\Entity\User" type="collection">
+          <argument key="class">%security.encoder.plain.class%</argument>
+          <argument key="arguments" type="collection">
+            <argument>false</argument>
+          </argument>
+        </argument>
+        <argument key="Login\UsuarioBundle\Entity\Admin" type="collection">
           <argument key="class">%security.encoder.plain.class%</argument>
           <argument key="arguments" type="collection">
             <argument>false</argument>
